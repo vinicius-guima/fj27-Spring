@@ -22,19 +22,28 @@ public class TopicController {
 	@Autowired
 	private TopicRepository topicRepository;
 	
+//	@Autowired
+//	private CategoryRepository categoryRepository;
+	
 	@GetMapping(value = "/api/topics", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Page<TopicBriefOutPutDto> listTopics(TopicSearchInputDto topicSearch,@PageableDefault
 			(sort="creationInstant" ,direction=Sort.Direction.DESC) Pageable pageRequest){
-//		
-//		Category subCategory = new Category("java", new Category("Programação"));
-//		Course course = new Course("java e JSF", subCategory);
-//		Topic topic = new Topic("Problemas com JSF", "Erro ao fazer conversão de data", 
-//				new User("Fulano", "fulano@gmail.com", "123456"), course);
-	
+
 		Specification<Topic> topicSearchSpecification = topicSearch.build();
 		Page<Topic> topics =this.topicRepository.findAll(topicSearchSpecification, pageRequest);
 		
 		return TopicBriefOutPutDto.listFromTopics(topics);
 	}
 
+//	
+//	@GetMapping(value = "/api/topics/dashboard", produces = MediaType.APPLICATION_JSON_VALUE)
+//	public String listTopics() {
+//
+//		List<Category> categories = categoryRepository.findBycategoryIsNull();
+//		for(Category c : categories) {
+//			System.out.println(c.getName());
+//		}
+//		
+//		return "ok";
+//	}
 }
