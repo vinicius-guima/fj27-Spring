@@ -2,7 +2,7 @@ package br.com.alura.forum;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+// onde o projeto começa
 @SpringBootApplication
 public class ForumApplication {
 
