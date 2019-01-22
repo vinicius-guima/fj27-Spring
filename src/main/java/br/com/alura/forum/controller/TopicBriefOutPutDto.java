@@ -6,6 +6,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+
 import br.com.alura.forum.model.topic.domain.Topic;
 import br.com.alura.forum.model.topic.domain.TopicStatus;
 	
@@ -40,9 +42,9 @@ public class TopicBriefOutPutDto {
 		
 	}
 
-	public static List<TopicBriefOutPutDto> listFromTopics(List<Topic> topics){
-		return topics.stream()
-				.map(TopicBriefOutPutDto :: new).collect(Collectors.toList());
+	
+	public static Page<TopicBriefOutPutDto> listFromTopics(Page<Topic> topics) {
+		return topics.map(TopicBriefOutPutDto :: new);
 	}
 	
 	public Long getId() {
